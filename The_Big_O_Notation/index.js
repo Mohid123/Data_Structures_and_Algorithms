@@ -43,3 +43,24 @@ function countUpAndDown(n) {
         console.log(j)
     }
 }
+
+// Space Complexity
+
+function sum(arr) {
+    let total = 0; //number
+    for(let i = 0; i < arr.length; i++) { // another number. The space is 2 because the variables are only two arr and total
+        total += arr[i]
+    }
+    return total
+}
+
+function double(arr) { //here the space is proportionate to the no. of itesms being pushed into the array
+    let total = [];
+    for(let i = 0; i < arr.length; i++) {
+        total.push(2 * arr[i])
+    }
+    return total
+}
+
+
+
