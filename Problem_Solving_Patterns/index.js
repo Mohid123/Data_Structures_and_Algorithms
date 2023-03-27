@@ -214,5 +214,70 @@ function areThereDuplicatesAlternate(...args) {
   return new Set(args).size !== args.length
 }
 
-console.log(areThereDuplicates(1, 'd', 2, 3, 'b', 4, 'a'))
-console.log(areThereDuplicatesAlternate(1, 'd', 2, 3, 'b', 4, 'a'))
+// console.log(areThereDuplicates(1, 'd', 2, 3, 'b', 4, 'a'))
+// console.log(areThereDuplicatesAlternate(1, 'd', 2, 3, 'b', 4, 'a'))
+
+const findAveragePair = (arr, val) => {
+  if (arr.length == 0) return false;
+  let i = 0;
+  let j = arr.length - 1
+  while(i < j) {
+    let avg = (arr[i] + arr[j]) / 2;
+    if(avg === val) {
+      return true
+    }
+    else if(avg < val) {
+      i++
+    }
+    else {
+      j--
+    }
+  }
+  return false
+}
+
+console.log(findAveragePair([1,3,3,5,6,7,10,12,19],8))
+
+const isSubsequence = (str1, str2) => {
+  let i = 0;
+  let j = 0;
+  if(!str1) return true 
+  while (j < str2.length) {
+    if(str2[j] === str1[i]) i++
+    if(i === str1.length) return true;
+    j++
+  }
+  return false
+}
+
+const maxSubarraySum = (arr, num) => {
+  let maxSum = 0;
+  let tempSum = 0;
+  for (let i = 0; i < num; i++) {
+    maxSum += arr[i]
+  }
+  tempSum = maxSum;
+  for (let i = num; i < arr.length; i++) {
+    tempSum = tempSum - arr[i - num] + arr[i];
+    maxSum = Math.max(maxSum, tempSum);
+  }
+  return maxSum
+}
+
+console.log(maxSubarraySum([100,200,300,400], 2));
+
+const minSubArrayLen = (nums, sum) => {
+  let maxSum = 0;
+  let tempSum = 0;
+  for (let i = 0; i < sum; i++) {
+    maxSum += nums[i]
+  }
+  tempSum = maxSum;
+  for (let i = sum; i < nums.length; i++) {
+    tempSum = tempSum - nums[i - sum] + nums[i];
+    maxSum = Math.min(maxSum, tempSum);
+  }
+  return maxSum
+}
+
+console.log(minSubArrayLen([1,4,16,22,5,7,8,9,10],39))
