@@ -126,7 +126,7 @@ const sumZero = (arr) => {
   }
 }
 
-console.log(sumZero([-3, -2, -1, 0, 1, 2]));
+// console.log(sumZero([-3, -2, -1, 0, 1, 2]));
 
 // Count unique values
 
@@ -144,7 +144,7 @@ const countUniqueValues = (arr) => {
   return i + 1;
 }
 
-// console.log(countUniqueValues([1,1,2,3,4,4,5]))
+console.log(countUniqueValues([1,1,2,3,4,4,5]))
 // console.log(countUniqueValues([1,1,1,2,2,2,2]))
 // console.log(countUniqueValues([]))
 // countUniqueValues([1,1,2,3,4,4,5])
@@ -161,14 +161,14 @@ const slidingWindow = (arr, num) => { // num here is the number of consecutive d
     maxSum += arr[i]
   }
   tempSum = maxSum;
-  for (let i = num;  i < arr.length; i++) {
+  for (let i = num; i < arr.length; i++) {
     tempSum = tempSum - arr[i - num] + arr[i];
     maxSum = Math.max(maxSum, tempSum)
   }
   return maxSum;
 }
 
-console.log(slidingWindow([1,3,4,6,7,3,4,2,1], 3))
+// console.log(slidingWindow([1,3,4,6,7,3,4,2,1], 3))
 
 // Divide and Conquer Approach
 // Binary search uses this kind of approach. It can make the code a bit more complicated but it's much much faster
@@ -182,19 +182,19 @@ const findValue = (arr, val) => {
     let middle = Math.floor((min + max) / 2);
     let currentElem = arr[middle];
     if(currentElem < val) {
-      min = middle + 1;
+      min = middle + 1
     }
     else if(currentElem > val) {
-      max = middle - 1;
+      max = middle - 1
     }
     else {
       return middle
     }
   }
-  return -1
+  return -1;
 }
 
-console.log(findValue([2, 4, 5, 6, 8, 12, 45, 46, 78, 98, 112], 2))
+// console.log(findValue([2, 4, 5, 6, 8, 12, 45, 46, 78, 98, 112], 6))
 
 function areThereDuplicates(...args) {
   args.sort((a, b) => a > b);
@@ -217,6 +217,8 @@ function areThereDuplicatesAlternate(...args) {
 // console.log(areThereDuplicates(1, 'd', 2, 3, 'b', 4, 'a'))
 // console.log(areThereDuplicatesAlternate(1, 'd', 2, 3, 'b', 4, 'a'))
 
+
+// Check if the provided value has a pair of values in the array, that when divided by 2 give us the value
 const findAveragePair = (arr, val) => {
   if (arr.length == 0) return false;
   let i = 0;
@@ -236,7 +238,7 @@ const findAveragePair = (arr, val) => {
   return false
 }
 
-console.log(findAveragePair([1,3,3,5,6,7,10,12,19],8))
+// console.log(findAveragePair([1,3,3,5,6,7,10,12,19],8))
 
 const isSubsequence = (str1, str2) => {
   let i = 0;
@@ -264,7 +266,7 @@ const maxSubarraySum = (arr, num) => {
   return maxSum
 }
 
-console.log(maxSubarraySum([100,200,300,400], 2));
+// console.log(maxSubarraySum([100,200,300,400], 2));
 
 const minSubArrayLen = (nums, sum) => {
   let maxSum = 0;
@@ -280,4 +282,20 @@ const minSubArrayLen = (nums, sum) => {
   return maxSum
 }
 
-console.log(minSubArrayLen([1,4,16,22,5,7,8,9,10],39))
+// console.log(minSubArrayLen([1,4,16,22,5,7,8,9,10],39))
+
+function longestSubstring(str) {
+  if (str.length == 0) return 0;
+  let lookup = {};
+  for (let i = 0; i < str.length; i++) {
+    lookup[str[i]] = lookup[str[i]] ? lookup[str[i]] += 1 : lookup[str[i]] = 1;
+  }
+  for (const letter in lookup) {
+   if(lookup[letter] > 1) {
+    lookup[letter] = 1;
+   }
+  }
+  return Object.keys(lookup).length
+}
+
+// console.log(longestSubstring('rithmschool'))
