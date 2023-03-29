@@ -159,4 +159,33 @@ function flattenArray(arr) {
   return newArr
 }
 
-console.log(flattenArray([1,2,[2,3],4,5]))
+console.log(flattenArray([1,2,[2,3],4,5]));
+
+function capitalize(arr) {
+  if(arr.length === 1) return [arr[0].toUpperCase()];
+  let newArr = capitalize(arr.slice(0, -1));
+  newArr.push(arr.slice(arr.length - 1)[0].toUpperCase())
+  return newArr
+}
+
+console.log(capitalize(['cat', 'deer', 'horse', 'mouse', 'rabbit']))
+
+function nestedEvenSum(obj, sum = 0) {
+  for (const key in obj) {
+    if(typeof obj[key] == 'object') {
+      sum += nestedEvenSum(obj[key])
+    }
+    else if(typeof obj[key] !== 'object' && obj[key] % 2 === 0) {
+      sum += obj[key]
+    }
+  }
+  return sum
+}
+
+console.log(nestedEvenSum({
+  a: 2,
+  b: {b: 2, bb: {b: 3, bb: {b: 2}}},
+  c: {c: {c: 2}, cc: 'ball', ccc: 5},
+  d: 1,
+  e: {e: {e: 2}, ee: 'car'}
+}))
