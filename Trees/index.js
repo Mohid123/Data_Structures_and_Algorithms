@@ -43,6 +43,24 @@ class BinarySearchTree {
         }
         
     }
+
+    find(value) {
+        if(this.root == null) return null;
+        let currentRoot = this.root,
+            found = false;
+        while(currentRoot && !found) {
+            if(value < currentRoot.value) {
+                currentRoot = currentRoot.left;
+            }
+            else if(value > currentRoot.value) {
+                currentRoot = currentRoot.right;
+            }
+            else {
+                found = true;
+            }
+        }
+        return currentRoot;
+    }
 }
 
 // This method to insert is a pain in the ass!
@@ -60,3 +78,4 @@ tree.insert(12);
 tree.insert(7);
 tree.insert(10);
 console.log(tree)
+console.log(tree.find(17))
